@@ -14,6 +14,7 @@ const Task = (props) => {
         description,
         email,
         deleteTask,
+        updateTask,
     } = props;
     const [isUpdate, setUpdate] = useState(false);
 
@@ -23,6 +24,11 @@ const Task = (props) => {
 
     const showOrHiddenUpdate = () => {
       setUpdate(!isUpdate);
+    };
+
+    const updateTaskHandler = (newValues) => {
+      updateTask(newValues);
+      setUpdate(false);
     };
 
     return (
@@ -43,7 +49,7 @@ const Task = (props) => {
                     <img src={Assets.images.trash} alt={'Borrar tarea'} />
                 </div>
             </div>
-            {isUpdate && (<TaskUpdate {...props} />)}
+            {isUpdate && (<TaskUpdate {...props} updateTask={updateTaskHandler} />)}
         </div>
     );
 };
