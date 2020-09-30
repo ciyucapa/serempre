@@ -1,6 +1,7 @@
 import thunk from 'redux-thunk';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import {persistReducer, persistStore} from 'redux-persist';
+import storage from 'redux-persist/lib/storage'
 
 import * as reducers from './ducks';
 import initialState from './initialState';
@@ -16,7 +17,8 @@ export default () => {
 
     const rootPersistConfig = {
         key: 'root',
-        storage: localStorage,
+        storage,
+        blacklist: ['navigation'],
     };
 
     const persistedReducer = persistReducer(
@@ -30,10 +32,10 @@ export default () => {
         compose(applyMiddleware(...middlewares)),
     );
 
-    // const persistor = persistStore(store);
+    const persistor = persistStore(store);
 
     return {
-        ...store,
-        // persistor,
+        store,
+        persistor,
     };
 };
