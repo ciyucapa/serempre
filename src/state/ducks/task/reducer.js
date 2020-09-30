@@ -3,10 +3,11 @@ import initialState from '../../initialState';
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'HYDRATE': {
+        case 'persist/REHYDRATE': {
             return {
                 ...state,
-                ...action.payload,
+                ...action.payload.task,
+                rehydrated: true,
             }
         }
         case types.ADD_TASK: {

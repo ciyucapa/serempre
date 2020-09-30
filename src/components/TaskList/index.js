@@ -17,7 +17,6 @@ const TaskList = (props) => {
 
 const mapStateToProps = (state) => {
     const {task} = state;
-    console.log('Task: ', task);
     return {
         tasks: task.tasks,
     };

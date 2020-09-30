@@ -6,6 +6,7 @@ import {persistReducer, persistStore} from 'redux-persist';
 import * as reducers from './ducks';
 
 export default () => {
+
     const middlewares = [
         thunk,
     ];
