@@ -8,10 +8,11 @@ export const NORMAL_SIZE = 'normal';
 export const SMALL_SIZE = 'small';
 
 const TextField = (props) => {
-    const {text, type} = props;
+    const {text, type, style} = props;
     return (
         <div style={{
             fontSize: sizesFonts[type],
+            ...style,
         }}>
             {text}
         </div>
@@ -21,11 +22,13 @@ const TextField = (props) => {
 TextField.propTypes = {
   text: PropTypes.string,
   type: PropTypes.string,
+  style: PropTypes.shape({}),
 };
 
 TextField.defaultProps = {
   text: '',
   type: NORMAL_SIZE,
+  style: {},
 };
 
 export default TextField;

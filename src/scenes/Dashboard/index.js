@@ -1,16 +1,15 @@
 import React from 'react';
 
-import Task from '../../components/Task';
+import TaskCreate from '../../components/TaskCreate';
+import TaskList from '../../components/TaskList';
 
 const Dashboard = () => {
     return (
         <div>
-            <Task title={'Primera tarea'} description={'Esta es una descripcion'} />
-            <Task title={'Primera tarea'} description={'Esta es una descripcion'} />
-            <Task title={'Primera tarea'} description={'Esta es una descripcion'} />
-            <Task title={'Primera tarea'} description={'Esta es una descripcion'} />
-            <Task title={'Primera tarea'} description={'Esta es una descripcion'} />
+            <TaskCreate />
+            <TaskList />
         </div>
     );
 };
+
 export default Dashboard;
