@@ -1,13 +1,12 @@
 import React from 'react';
 
+import BaseScene from '../BaseScene';
 import TaskGeoLocation from '../../components/TaskGeoLocation';
-import TaskCreate from '../../components/TaskCreate';
 
 const Maps = () => (
     <div>
-        <TaskCreate />
         <TaskGeoLocation />
     </div>
 );
 
-export default Maps;
+export default BaseScene(Maps);
