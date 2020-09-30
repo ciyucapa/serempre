@@ -3,9 +3,16 @@ import initialState from '../../initialState';
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case 'HYDRATE': {
+            return {
+                ...state,
+                ...action.payload,
+            }
+        }
         case types.ADD_TASK: {
             const {payload} = action;
             const {tasks} = state;
+
             return {
                 ...state,
                 tasks: [
@@ -52,6 +59,7 @@ const reducer = (state = initialState, action) => {
                 if (task.id !== id) {
                     tasks_aux.push(task);
                 }
+                return task;
             });
 
             return {

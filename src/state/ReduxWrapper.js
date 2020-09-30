@@ -4,11 +4,13 @@ import {PersistGate} from 'redux-persist/integration/react';
 
 import createStore from './createStore';
 
-const {store, persistor} = createStore();
-export default ({element}) => (
-    <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-            {element}
-        </PersistGate>
-    </Provider>
-);
+export default ({element}) => {
+    const {store, persistor} = createStore();
+    return (
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                {element}
+            </PersistGate>
+        </Provider>
+    );
+}
