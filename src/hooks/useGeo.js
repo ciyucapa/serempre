@@ -2,8 +2,9 @@ import {useState, useEffect} from 'react';
 
 const useGeo = () => {
     const [currentPosition, setCurrentPosition] = useState({
-       lat: 0,
-       lng: 0,
+        lat: 59.95,
+        lng: 30.33,
+        isReady: false,
     });
 
     useEffect(() => {
@@ -11,6 +12,7 @@ const useGeo = () => {
             setCurrentPosition({
                 lat: position.coords.latitude,
                 lng: position.coords.longitude,
+                isReady: true,
             });
         });
     }, []);

@@ -1,9 +1,13 @@
 import React from 'react';
 
 import TaskGeoLocation from '../../components/TaskGeoLocation';
+import TaskCreate from '../../components/TaskCreate';
 
 const Maps = () => (
-    <TaskGeoLocation />
+    <div>
+        <TaskCreate />
+        <TaskGeoLocation />
+    </div>
 );
 
 export default Maps;
