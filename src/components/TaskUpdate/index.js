@@ -5,7 +5,6 @@ import InputField from '../commons/InputField';
 
 const TaskUpdate = (props) => {
     const {id, updateTask} = props;
-    console.log('Task update: ', updateTask);
     const [title, setTitle] = useState(props.title);
     const [description, setDescription] = useState(props.description);
     const [email, setEmail] = useState(props.email);
@@ -16,8 +15,7 @@ const TaskUpdate = (props) => {
                 title,
                 description,
                 email,
-                id,
-            });
+            }, id);
         }
     };
 

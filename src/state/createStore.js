@@ -4,6 +4,7 @@ import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import {persistReducer, persistStore} from 'redux-persist';
 
 import * as reducers from './ducks';
+import initialState from "./initialState";
 
 export default () => {
 
@@ -28,6 +29,7 @@ export default () => {
 
     const store = createStore(
         persistedReducer,
+       // initialState,
         compose(applyMiddleware(...middlewares)),
     );
 

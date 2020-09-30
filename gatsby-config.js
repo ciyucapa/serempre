@@ -5,6 +5,20 @@
  */
 
 module.exports = {
-  /* Your site config here */
-  plugins: [],
+  plugins: [
+    {
+      resolve: `gatsby-source-strapi`,
+      options: {
+        apiURL: `https://api-1xhfx.strapidemo.com`,
+        queryLimit: 1000,
+        contentTypes: [`tasks`],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-apollo',
+      options: {
+        uri: 'https://api-1xhfx.strapidemo.com'
+      }
+    }
+  ],
 }

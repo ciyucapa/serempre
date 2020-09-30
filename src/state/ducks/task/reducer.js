@@ -4,10 +4,17 @@ import initialState from '../../initialState';
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'persist/REHYDRATE': {
-            return {
-                ...state,
-                ...action.payload.task,
-                rehydrated: true,
+            if (action.payload) {
+                return {
+                    ...state,
+                    ...action.payload.task,
+                    rehydrated: true,
+                }
+            } else {
+                return {
+                    ...state,
+                    rehydrated: true,
+                }
             }
         }
         case types.ADD_TASK: {
@@ -66,6 +73,12 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 tasks: tasks_aux,
+            }
+        }
+        case types.FETCH_TASKS_STRAPI: {
+            return {
+                ...state,
+                tasks: action.payload,
             }
         }
         default: {

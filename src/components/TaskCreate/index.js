@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import useGeo from '../../hooks/useGeo';
 import InputField from '../commons/InputField';
 import Form from '../commons/Form';
+import useTasks from '../../hooks/useTasks';
 import {addTask} from '../../state/ducks/task/actions';
 
 import {validationSchema, initialValues} from './utils';
@@ -18,24 +19,25 @@ const TaskCreate = (props) => {
         handleReset,
     } = props;
     const {currentPosition} = useGeo();
-
-    console.log('Props: ', props);
+    const hook = useTasks();
 
     const isValid = () => {
         return values.title && values.description && values.email;
     };
 
-    const onCreate = () => {
+    const onCreate = async () => {
         if (isValid()) {
             const {title, description, email} = values;
-            addTask({
+            const taskItem = {
                 title,
                 description,
                 email,
-                id: Math.floor(Math.random() * (100000 - 1)) + 1,
+                id: `Tasks_${Math.floor(Math.random() * (100000 - 1)) + 1}`,
                 position: currentPosition,
-            });
+            };
 
+            hook.createTask({variables: {input: taskItem}});
+            addTask(taskItem);
             handleReset();
         }
     };

@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
+import useTasks from '../../../hooks/useTasks';
 import TaskUpdate from '../../TaskUpdate';
 import TextField, {HIGH_SIZE} from '../../commons/TextField';
 import {Assets} from '../../../resources';
@@ -17,8 +18,10 @@ const Task = (props) => {
         updateTask,
     } = props;
     const [isUpdate, setUpdate] = useState(false);
+    const hook = useTasks();
 
     const deleteTaskHandler = () => {
+        hook.deleteTask({variables: {id}});
         deleteTask(id);
     };
 
@@ -26,8 +29,9 @@ const Task = (props) => {
       setUpdate(!isUpdate);
     };
 
-    const updateTaskHandler = (newValues) => {
-      updateTask(newValues);
+    const updateTaskHandler = (newValues, id) => {
+      hook.updateTask({variables: {id, input: {newValues}}});
+      updateTask({...newValues, id});
       setUpdate(false);
     };
 

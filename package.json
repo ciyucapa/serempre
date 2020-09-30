@@ -14,9 +14,11 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "@apollo/client": "^3.2.1",
     "formik": "^2.1.6",
     "gatsby": "^2.24.66",
-    "gatsby-plugin-react-redux": "^1.1.0",
+    "gatsby-plugin-apollo": "^3.0.1",
+    "gatsby-source-strapi": "0.0.12",
     "google-map-react": "^2.1.6",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
