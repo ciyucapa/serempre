@@ -1,10 +1,9 @@
 import thunk from 'redux-thunk';
+import storage from './storage';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import {persistReducer, persistStore} from 'redux-persist';
-import storage from 'redux-persist/lib/storage'
 
 import * as reducers from './ducks';
-import initialState from './initialState';
 
 export default () => {
     const middlewares = [
@@ -28,7 +27,6 @@ export default () => {
 
     const store = createStore(
         persistedReducer,
-        initialState,
         compose(applyMiddleware(...middlewares)),
     );
 

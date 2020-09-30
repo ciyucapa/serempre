@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import useGeo from '../../hooks/useGeo';
 import InputField from '../commons/InputField';
 import Form from '../commons/Form';
 import {addTask} from '../../state/ducks/task/actions';
@@ -16,6 +17,7 @@ const TaskCreate = (props) => {
         addTask,
         handleReset,
     } = props;
+    const {currentPosition} = useGeo();
 
     console.log('Props: ', props);
 
@@ -31,6 +33,7 @@ const TaskCreate = (props) => {
                 description,
                 email,
                 id: Math.floor(Math.random() * (100000 - 1)) + 1,
+                position: currentPosition,
             });
 
             handleReset();
