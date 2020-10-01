@@ -14,17 +14,12 @@ const ContainerTask = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 100%;
         align-content: center;
         align-items: center;
         padding-top: 5px;
         padding-bottom: 5px;
-        @media (max-width: 768px) {
-        min-width: 200px;
-        margin: 0 auto;
-        }
-
-`
+        width: 100%;
+`;
 
 const ContainTask = styled.div`
         display: flex;
@@ -39,23 +34,18 @@ const ContainTask = styled.div`
         min-width: 400px;
         max-width: 400px;
         @media (max-width: 768px) {
-        justify-content: space-around;
         min-width: 300px;
         max-width: 300px;
-        padding: 5px 5px;
         }
-`
+`;
 
-const FieldContent = styled.div`
+const ContentField = styled.div`
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-content: center;
-        align-items: center;
         text-align: left;
-        @media (max-width: 768px) {
-        flex-direction: row;
-        }
-`
+`;
 
 const BoxImage = styled.div`
         display: flex;
@@ -64,25 +54,25 @@ const BoxImage = styled.div`
         align-content: center;
         align-items: center;
         padding-left: 20px;
+        padding-right: 20px;
         cursor: pointer;
         @media (max-width: 768px) {
         padding-left: 10px;
+        padding-right: 10px;
         }
-`
+`;
 
 const Image = styled.img`
         width: 15px;
         height: 15px;
-`
+`;
 
 const ButtonContent = styled.div`
        display: flex;
        flex-direction: row;
-       width: 70px;
-       @media (max-width: 768px) {
-        width: 45px;
-        }
-`
+       justify-content: center;
+       align-items: center;
+`;
 
 const Task = (props) => {
     const {
@@ -128,11 +118,11 @@ const Task = (props) => {
     return (
         <ContainerTask>
             <ContainTask>
-                <FieldContent>
+                <ContentField>
                     <TextField text={title} type={HIGH_SIZE} />
                     <TextField text={description} />
                     <TextField text={email} />
-                </FieldContent>
+                </ContentField>
                 <ButtonContent>
                     <BoxImage onClick={showOrHiddenUpdate}>
                         <Image src={Assets.images.edit} alt={'Editar tarea'} />

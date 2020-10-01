@@ -12,22 +12,23 @@ import {addTask} from '../../state/ducks/task/actions';
 import {validationSchema, initialValues} from './utils';
 import TextField, {HIGH_SIZE} from '../commons/TextField';
 
-const Container = styled.div`
+const ContainerTaskCreate = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 100%;
-        padding-top: 30px;
         align-content: center;
         align-items: center;
         text-align: center;
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
         @media (max-width: 768px) {
-                
-        background: red;
+        padding-top: 10px
+        padding-bottom: 10px;    
         }
 `;
 
-const Contain = styled.div`
+const ContainTaskCreate = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -37,47 +38,36 @@ const Contain = styled.div`
         padding-top: 20px;
         padding-bottom: 20px;
         @media (max-width: 768px) {
-                
-        background: pink;
+        padding-top: 10px;
+        padding-bottom: 5px;        
         }
 `;
 
 const InputContent = styled.div`
         display: flex;
-        flex-direction: row;
         justify-content: center;
+        flex-direction: row;
+        align-items: center;
         @media (max-width: 768px) {
         flex-direction: column;
-        text-align: center;
-        background: blue;
         }
 `;
 
 const ButtonContent = styled.div`
         display: flex;
-        flex-direction: row;
         justify-content: center;
         align-items: center;
-        width: 100%;
-        padding-top: 20px;
-        padding-bottom: 20px;
-       
 `;
 
 const Button = styled.button`
-        display: flex;
-        font-size: 1rem;
-        background: #4848EF;
+        text-align: center;
         color: #f6f6f6;
-        border: 50px;
+        background: #4848EF;
+        padding: 5px;
+        margin-top: 20px;
+        width: 90px;
         border-radius: 50px;
-        padding: 5px 20px;
-        
-        @media (max-width: 768px) {
-        font-size: 0.8rem;
-        
-        }
-        
+        border: none;
 `;
 
 const TaskCreate = (props) => {
@@ -116,9 +106,9 @@ const TaskCreate = (props) => {
     };
 
     return (
-        <Container>
+        <ContainerTaskCreate>
             <TextField text={'CREAR NUEVA TAREA'} type={HIGH_SIZE}/>
-            <Contain>
+            <ContainTaskCreate>
                 <InputContent>
                     <InputField
                         value={values.title}
@@ -144,8 +134,8 @@ const TaskCreate = (props) => {
                         Guardar
                     </Button>
                 </ButtonContent>
-            </Contain>
-        </Container>
+            </ContainTaskCreate>
+        </ContainerTaskCreate>
     );
 };
 

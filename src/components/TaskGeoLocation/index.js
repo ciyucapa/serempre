@@ -1,10 +1,22 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import {connect} from 'react-redux';
+import styled from 'styled-components';
 
 import useGeo from '../../hooks/useGeo';
 import useWindowSize from '../../hooks/useWindowSize';
 import {GOOGLE_MAP_KEY} from '../../config/constants';
+
+const ContainerMap = styled.div`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 20px;
+        border-radius: 5px;
+        background: #FF0000;
+        color: #FFFFFF;
+`;
 
 const TaskGeoLocation = (props) => {
     const {tasks} = props;
@@ -12,7 +24,7 @@ const TaskGeoLocation = (props) => {
     const {currentPosition} = useGeo();
     const {isReady} = currentPosition;
 
-    const AnyReactComponent = ({ text }) => <div style={{width: 100, textAlign: 'center', borderRadius: 5, height: 30, backgroundColor: '#FF0000', color: '#FFFFFF'}}>{text}</div>;
+    const AnyReactComponent = ({ text }) => <ContainerMap>{text}</ContainerMap>;
 
     return (
         <div style={size}>
