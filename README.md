@@ -35,6 +35,9 @@ Strapi es una plataforma que presta servicios de almacenamiento bajo GraphQl.
 
 Para efectos de prueba, puede generar un live demostration de 15 minutos, en los cuales podra hacer CRUD a una coleccion.
 
+#### NOTA
+
+Puede probar la aplicación sin strapi, pero todo lo que haga se guardara solo en el almacenamiento local.
 ### Pasos con Strapi
 
 Una vez obtenida la cuenta de strapi o el live demostration, debe crear una coleccion de nombre "tasks".
