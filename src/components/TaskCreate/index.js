@@ -1,16 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import styled from 'styled-components';
 
-import styled from "styled-components"
 import useGeo from '../../hooks/useGeo';
 import InputField from '../commons/InputField';
 import Form from '../commons/Form';
 import useTasks from '../../hooks/useTasks';
+import {STRAPI_URL} from '../../config/constants';
 import {addTask} from '../../state/ducks/task/actions';
 
 import {validationSchema, initialValues} from './utils';
-import TextField, {HIGH_SIZE} from "../commons/TextField";
-import {resetCaches} from "@apollo/client";
+import TextField, {HIGH_SIZE} from '../commons/TextField';
 
 const Container = styled.div`
         display: flex;
@@ -25,7 +25,8 @@ const Container = styled.div`
                 
         background: red;
         }
-`
+`;
+
 const Contain = styled.div`
         display: flex;
         flex-direction: column;
@@ -39,7 +40,7 @@ const Contain = styled.div`
                 
         background: pink;
         }
-`
+`;
 
 const InputContent = styled.div`
         display: flex;
@@ -50,7 +51,8 @@ const InputContent = styled.div`
         text-align: center;
         background: blue;
         }
-`
+`;
+
 const ButtonContent = styled.div`
         display: flex;
         flex-direction: row;
@@ -60,13 +62,7 @@ const ButtonContent = styled.div`
         padding-top: 20px;
         padding-bottom: 20px;
        
-`
-
-const Text = styled.div`
-        text-align: center;
-        @media (max-width: 768px) {
-        }       
-`
+`;
 
 const Button = styled.button`
         display: flex;
@@ -82,7 +78,7 @@ const Button = styled.button`
         
         }
         
-`
+`;
 
 const TaskCreate = (props) => {
     const {
@@ -109,6 +105,10 @@ const TaskCreate = (props) => {
                 position: currentPosition,
             };
 
+            if (!STRAPI_URL) {
+                taskItem.id = `${Math.floor(Math.random() * (100000 - 1)) + 1}`;
+            }
+
             hook.createTask({variables: {input: {data: taskItem}}});
             addTask(taskItem);
             handleReset();
@@ -117,7 +117,7 @@ const TaskCreate = (props) => {
 
     return (
         <Container>
-            <Text text={'CREAR NUEVA TAREA'} type={HIGH_SIZE}/>
+            <TextField text={'CREAR NUEVA TAREA'} type={HIGH_SIZE}/>
             <Contain>
                 <InputContent>
                     <InputField

@@ -119,4 +119,43 @@ describe('Test for reducer for Task', () => {
         expect(tasks[0].id).toBe('3');
         expect(tasks[1].id).toBe('4');
     });
+
+    it('case UPDATE_TASK', () => {
+        const state = {
+            tasks: [{
+                id: '1',
+                title: 'test_title',
+                description: 'test_description',
+                email: 'test@test.com',
+                position: {
+                    lat: 5.5,
+                    lng: 5.5,
+                },
+            }],
+        };
+
+        const action = {
+            type: types.UPDATE_TASK,
+            payload: {
+                id: '1',
+                title: 'test_title2',
+                description: 'test_description2',
+                email: 'test@test.com',
+                position: {
+                    lat: 5.5,
+                    lng: 5.5,
+                },
+            },
+        };
+
+        const result = reducer(state, action);
+        const {tasks} = result;
+
+        expect(tasks.length).toBe(1);
+        expect(tasks[0].title).toBe('test_title2');
+        expect(tasks[0].description).toBe('test_description2');
+        expect(tasks[0].email).toBe('test@test.com');
+        expect(tasks[0].position.lat).toBe(5.5);
+        expect(tasks[0].position.lng).toBe(5.5);
+    });
 });

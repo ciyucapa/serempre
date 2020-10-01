@@ -2,69 +2,25 @@
 
 exports[`TabBar renders correctly 1`] = `
 <div
-  style={
-    Object {
-      "alignItems": "center",
-      "backgroundColor": "#1f1e1e",
-      "bottom": 0,
-      "display": "flex",
-      "flexDirection": "row",
-      "height": 50,
-      "justifyContent": "center",
-      "paddingRight": 5,
-      "position": "fixed",
-      "width": "100%",
-      "zIndex": 5,
-    }
-  }
+  className="sc-bdnylx bCbvVP"
 >
   <div
-    style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#FFFFFF",
-        "display": "flex",
-        "flexDirection": "row",
-        "height": "100%",
-        "justifyContent": "space-between",
-        "width": 200,
-      }
-    }
+    className="sc-gtssRu iwvBCG"
   >
     <a
       href="/"
-      style={
-        Object {
-          "padding": 10,
-        }
-      }
     >
       <img
+        className="sc-dlnjPT cjOmng"
         src="/static/images/list.png"
-        style={
-          Object {
-            "height": 30,
-            "width": 30,
-          }
-        }
       />
     </a>
     <a
       href="/maps"
-      style={
-        Object {
-          "padding": 10,
-        }
-      }
     >
       <img
+        className="sc-dlnjPT cjOmng"
         src="/static/images/map.png"
-        style={
-          Object {
-            "height": 30,
-            "width": 30,
-          }
-        }
       />
     </a>
   </div>

@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import styled from "styled-components"
+import styled from 'styled-components';
 import useTasks from '../../../hooks/useTasks';
 import TaskUpdate from '../../TaskUpdate';
 import TextField, {HIGH_SIZE} from '../../commons/TextField';
+import {STRAPI_URL} from '../../../config/constants';
 import {Assets} from '../../../resources';
-import {deleteTask} from '../../../state/ducks/task/actions';
+import {deleteTask, updateTask} from '../../../state/ducks/task/actions';
 
 const ContainerTask = styled.div`
         display: flex;
@@ -90,6 +91,7 @@ const Task = (props) => {
         description,
         email,
         deleteTask,
+        updateTask,
     } = props;
     const [isUpdate, setUpdate] = useState(false);
     const hook = useTasks();
@@ -104,6 +106,11 @@ const Task = (props) => {
     };
 
     const updateTaskHandler = (newValues, id) => {
+        if (!STRAPI_URL) {
+            console.log('Aqui entro');
+            updateTask({...newValues, id});
+        }
+
         hook.updateTask({
             variables: {
                 input: {
@@ -114,7 +121,8 @@ const Task = (props) => {
                 }
             }
         });
-      setUpdate(false);
+
+        setUpdate(false);
     };
 
     return (
@@ -153,6 +161,7 @@ Task.defaultProps = {
 
 const mapDispatchToProps = {
     deleteTask,
+    updateTask,
 };
 
 export default connect(null, mapDispatchToProps)(Task);

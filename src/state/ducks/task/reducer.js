@@ -29,6 +29,33 @@ const reducer = (state = initialState, action) => {
                 ],
             }
         }
+        case types.UPDATE_TASK: {
+            console.log('Estamos en el reducer');
+            const {
+                title,
+                description,
+                email,
+                id,
+            } = action.payload;
+            const {tasks} = state;
+
+            const tasks_aux = tasks.map((task) => {
+                if (task.id === id) {
+                    task.title = title;
+                    task.description = description;
+                    task.email = email;
+                }
+
+                return task;
+            });
+
+            console.log('Este es el nuevo estado: ', tasks_aux);
+
+            return {
+                ...state,
+                tasks: tasks_aux,
+            }
+        }
         case types.GET_TASK: {
             return {
                 ...state,
