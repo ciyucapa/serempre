@@ -1,3 +1,7 @@
 import config from './env';
 
-export const GOOGLE_MAP_KEY = config.googleMapKey;
+const {googleMapKey, strapiUrl} = config;
+
+export const GOOGLE_MAP_KEY = googleMapKey;
+
+export const STRAPI_URL = strapiUrl;

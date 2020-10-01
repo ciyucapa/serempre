@@ -1,8 +1,4 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/gatsby-config/
- */
+import {STRAPI_URL} from './src/config/constants';
 
 module.exports = {
   plugins: [
@@ -10,7 +6,7 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: `https://api-u2yol.strapidemo.com`,
+        apiURL: STRAPI_URL,
         queryLimit: 1000,
         contentTypes: [`tasks`],
       },
@@ -18,7 +14,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-apollo',
       options: {
-        uri: 'https://api-u2yol.strapidemo.com/graphql'
+        uri: `${STRAPI_URL}/graphql`
       }
     }
   ],
