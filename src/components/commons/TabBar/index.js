@@ -2,19 +2,60 @@ import React from 'react';
 import {Link} from "gatsby"
 
 import {Assets} from '../../../resources';
+import styled from "styled-components"
+
+const BoxTabBar = styled.div`
+        background: #1f1e1e;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+        position: fixed;
+        bottom: 0;
+        padding-right: 5px;
+        z-index: 5;
+        @media (max-width: 768px) {
+        
+        }
+`
+
+const ContainTabBar = styled.div`
+        background: #1f1e1e;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 200px;
+        height: 100%;
+        background: #FFFFFF;
+        @media (max-width: 768px) {
+ 
+        }
+`
+
+const ImageTabBar = styled.img`
+        width: 30px;
+        height: 30px;
+        padding: 10px;
+        @media (max-width: 768px) {
+ 
+        }
+`
 
 const TabBar = () => {
     return (
-        <div style={{backgroundColor: '#1f1e1e', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%', height: 50, position: 'fixed', bottom: 0, paddingRight: 5, zIndex: 5}}>
-            <div style={{width: 200, height: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#FFFFFF'}}>
-                <Link to="/" style={{padding: 10}}>
-                    <img src={Assets.images.list} style={{width: 30, height: 30}} />
+        <BoxTabBar>
+            <ContainTabBar>
+                <Link to="/">
+                    <ImageTabBar src={Assets.images.list}/>
                 </Link>
-                <Link to="/maps" style={{padding: 10}}>
-                    <img src={Assets.images.map} style={{width: 30, height: 30}} />
+                <Link to="/maps">
+                    <ImageTabBar src={Assets.images.map}/>
                 </Link>
-            </div>
-        </div>
+            </ContainTabBar>
+        </BoxTabBar>
     );
 };
 

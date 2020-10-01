@@ -29,6 +29,10 @@
 npm install -g gatsby-cli
 ```
 
+### Strapi como servicio
+
+Strapi es una plataforma que presta servicios de almacenamiento bajo GraphQl.
+
 #### Instalación
 
 ```

@@ -41,7 +41,7 @@ const Contain = styled.div`
         }
 `
 
-const BoxOne = styled.div`
+const InputContent = styled.div`
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -51,7 +51,7 @@ const BoxOne = styled.div`
         background: blue;
         }
 `
-const BoxTwo = styled.div`
+const ButtonContent = styled.div`
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -61,6 +61,13 @@ const BoxTwo = styled.div`
         padding-bottom: 20px;
        
 `
+
+const Text = styled.div`
+        text-align: center;
+        @media (max-width: 768px) {
+        }       
+`
+
 const Button = styled.button`
         display: flex;
         font-size: 1rem;
@@ -76,7 +83,6 @@ const Button = styled.button`
         }
         
 `
-
 
 const TaskCreate = (props) => {
     const {
@@ -111,33 +117,33 @@ const TaskCreate = (props) => {
 
     return (
         <Container>
-            <TextField text={'CREAR NUEVA TAREA'} type={HIGH_SIZE} style={{textAlign: 'center'}} />
+            <Text text={'CREAR NUEVA TAREA'} type={HIGH_SIZE}/>
             <Contain>
-                <BoxOne>
+                <InputContent>
                     <InputField
                         value={values.title}
-                        placeholder={'Título'}
+                        placeholder={'Título...'}
                         onChange={handleChange('title')}
                         error={errors.title}
                     />
                     <InputField
                         value={values.description}
-                        placeholder={'Descripción'}
+                        placeholder={'Descripción...'}
                         onChange={handleChange('description')}
                         error={errors.description}
                     />
                     <InputField
                         value={values.email}
-                        placeholder={'Correo del encargado'}
+                        placeholder={'Correo del encargado...'}
                         onChange={handleChange('email')}
                         error={errors.email}
                     />
-                </BoxOne>
-                <BoxTwo>
+                </InputContent>
+                <ButtonContent>
                     <Button onClick={onCreate} disabled={!isValid()}>
                         Guardar
                     </Button>
-                </BoxTwo>
+                </ButtonContent>
             </Contain>
         </Container>
     );

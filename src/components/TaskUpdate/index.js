@@ -2,6 +2,26 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 import InputField from '../commons/InputField';
+import styled from "styled-components"
+
+const ContainerTaskUpdate = styled.div`
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding-top: 10px;
+        @media (max-width: 768px) {
+        
+        }
+`
+
+const ContainTaskUpdate = styled.div`
+        display: flex;
+        flex-direction: row;
+        width: 800px;
+        @media (max-width: 768px) {
+        
+        }
+`
 
 const TaskUpdate = (props) => {
     const {id, updateTask} = props;
@@ -40,28 +60,28 @@ const TaskUpdate = (props) => {
     };
 
     return (
-        <div style={{display: 'flex', justifyContent: 'center', width: '100%', paddingTop: 10}}>
-            <div style={{width: 800, display: 'flex', flexDirection: 'row'}}>
+        <ContainerTaskUpdate>
+            <ContainTaskUpdate>
                 <InputField
                     value={title}
-                    placeholder={'Título'}
+                    placeholder={'Título...'}
                     onChange={handleChange('title')}
                 />
                 <InputField
                     value={description}
-                    placeholder={'Descripción'}
+                    placeholder={'Descripción...'}
                     onChange={handleChange('description')}
                 />
                 <InputField
                     value={email}
-                    placeholder={'Correo del encargado'}
+                    placeholder={'Correo del encargado...'}
                     onChange={handleChange('email')}
                 />
                 <button onClick={onUpdate} disabled={!isValid()}>
                     Editar
                 </button>
-            </div>
-        </div>
+            </ContainTaskUpdate>
+        </ContainerTaskUpdate>
     );
 };
 

@@ -1,12 +1,10 @@
-import {STRAPI_URL} from './src/config/constants';
-
 module.exports = {
   plugins: [
       `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: STRAPI_URL,
+        apiURL: 'https://api-7ri8d.strapidemo.com',
         queryLimit: 1000,
         contentTypes: [`tasks`],
       },
@@ -14,7 +12,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-apollo',
       options: {
-        uri: `${STRAPI_URL}/graphql`
+        uri: `https://api-7ri8d.strapidemo.com/graphql`
       }
     }
   ],

@@ -45,7 +45,7 @@ const ContainTask = styled.div`
         }
 `
 
-const BoxField = styled.div`
+const FieldContent = styled.div`
         display: flex;
         flex-direction: column;
         align-content: center;
@@ -120,11 +120,11 @@ const Task = (props) => {
     return (
         <ContainerTask>
             <ContainTask>
-                <BoxField>
+                <FieldContent>
                     <TextField text={title} type={HIGH_SIZE} />
                     <TextField text={description} />
                     <TextField text={email} />
-                </BoxField>
+                </FieldContent>
                 <ButtonContent>
                     <BoxImage onClick={showOrHiddenUpdate}>
                         <Image src={Assets.images.edit} alt={'Editar tarea'} />
