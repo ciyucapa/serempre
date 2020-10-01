@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputField renders correctly 1`] = `
+<div
+  className="sc-bdnylx lfgfey"
+>
+  <input
+    className="sc-gtssRu glhVaN"
+    onChange={[Function]}
+    placeholder="test placeholder"
+    value="test"
+  />
+  
+</div>
+`;

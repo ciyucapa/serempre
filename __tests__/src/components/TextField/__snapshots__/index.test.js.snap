@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField renders correctly 1`] = `
+<div
+  style={
+    Object {
+      "fontSize": 12,
+      "paddingBottom": 20,
+    }
+  }
+>
+  test
+</div>
+`;
