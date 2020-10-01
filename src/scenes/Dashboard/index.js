@@ -6,7 +6,7 @@ import TaskList from '../../components/TaskList';
 
 const Dashboard = () => {
     return (
-        <div>
+        <div style={{paddingBottom: 100}}>
             <TaskCreate />
             <TaskList />
         </div>
