@@ -33,6 +33,51 @@ npm install -g gatsby-cli
 
 Strapi es una plataforma que presta servicios de almacenamiento bajo GraphQl.
 
+Para efectos de prueba, puede generar un live demostration de 15 minutos, en los cuales podra hacer CRUD a una coleccion.
+
+### Pasos con Strapi
+
+Una vez obtenida la cuenta de strapi o el live demostration, debe crear una coleccion de nombre "tasks".
+
+La cual debe contener los siguientes campos:
+
+title: string
+description: string
+email: email
+position: json
+
+Una vez hecho esto, debe modificar los roles y permisos, para que la coleccion tasks pueda ser ejecuta por cualquier aplicación (CRUD).
+
+Asegurese de colocar la url de strapi en los siguientes archivos.
+
+/src/config/env.js
+
+```
+const config = {
+    googleMapKey: 'KEYGOOGLEMAPS......',
+    strapiUrl: 'https://api-xxxx.strapidemo.com', // <--- aquí
+};
+
+export default config;
+```
+
+/gatsby-config.js
+
+```
+module.exports = {
+  plugins: [
+    ...,
+    {
+      resolve: 'gatsby-plugin-apollo',
+      options: {
+        uri: `https://api-xxxx.strapidemo.com/graphql` // <--- aquí
+      }
+    },
+    ...,
+  ],
+}
+```
+
 #### Instalación
 
 ```

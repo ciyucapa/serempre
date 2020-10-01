@@ -4,7 +4,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-apollo',
       options: {
-        uri: `https://api-7ri8d22222.strapidemo.com/graphql`
+        uri: `https://api-3qw34.strapidemo.com/graphql`
       }
     }
   ],
