@@ -59,3 +59,7 @@ export default config;
 #### Pruebas unitarias
 
 Este proyecto posee las pruebas para la función reductora de las tareas y algunos components comunes.
+
+```
+npm run test
+```
