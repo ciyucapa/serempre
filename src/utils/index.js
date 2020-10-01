@@ -1,5 +1,5 @@
 export const sizesFonts = {
-  small: window.innerWidth / 95,
-  high: window.innerWidth / 60,
-  normal: window.innerWidth / 75,
+  small: 8,
+  high: 20,
+  normal: 12,
 };

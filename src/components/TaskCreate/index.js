@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import styled from "styled-components"
 import useGeo from '../../hooks/useGeo';
 import InputField from '../commons/InputField';
 import Form from '../commons/Form';
@@ -9,6 +10,73 @@ import {addTask} from '../../state/ducks/task/actions';
 
 import {validationSchema, initialValues} from './utils';
 import TextField, {HIGH_SIZE} from "../commons/TextField";
+import {resetCaches} from "@apollo/client";
+
+const Container = styled.div`
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        padding-top: 30px;
+        align-content: center;
+        align-items: center;
+        text-align: center;
+        @media (max-width: 768px) {
+                
+        background: red;
+        }
+`
+const Contain = styled.div`
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-item: center;
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        @media (max-width: 768px) {
+                
+        background: pink;
+        }
+`
+
+const BoxOne = styled.div`
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        @media (max-width: 768px) {
+        flex-direction: column;
+        text-align: center;
+        background: blue;
+        }
+`
+const BoxTwo = styled.div`
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+       
+`
+const Button = styled.button`
+        display: flex;
+        font-size: 1rem;
+        background: #4848EF;
+        color: #f6f6f6;
+        border: 50px;
+        border-radius: 50px;
+        padding: 5px 20px;
+        
+        @media (max-width: 768px) {
+        font-size: 0.8rem;
+        
+        }
+        
+`
+
 
 const TaskCreate = (props) => {
     const {
@@ -32,21 +100,20 @@ const TaskCreate = (props) => {
                 title,
                 description,
                 email,
-                id: `Tasks_${Math.floor(Math.random() * (100000 - 1)) + 1}`,
                 position: currentPosition,
             };
 
-            hook.createTask({variables: {input: taskItem}});
+            hook.createTask({variables: {input: {data: taskItem}}});
             addTask(taskItem);
             handleReset();
         }
     };
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', paddingBottom: 20}}>
+        <Container>
             <TextField text={'CREAR NUEVA TAREA'} type={HIGH_SIZE} style={{textAlign: 'center'}} />
-            <div style={{display: 'flex', justifyContent: 'center', width: '100%', paddingTop: 20}}>
-                <div style={{width: 800, display: 'flex', flexDirection: 'row'}}>
+            <Contain>
+                <BoxOne>
                     <InputField
                         value={values.title}
                         placeholder={'Título'}
@@ -65,12 +132,14 @@ const TaskCreate = (props) => {
                         onChange={handleChange('email')}
                         error={errors.email}
                     />
-                    <button onClick={onCreate} disabled={!isValid()}>
+                </BoxOne>
+                <BoxTwo>
+                    <Button onClick={onCreate} disabled={!isValid()}>
                         Guardar
-                    </button>
-                </div>
-            </div>
-        </div>
+                    </Button>
+                </BoxTwo>
+            </Contain>
+        </Container>
     );
 };
 

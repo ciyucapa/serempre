@@ -1,15 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from "styled-components"
+
+const BoxInput = styled.div`
+        padding-left: 10px;
+        padding-right: 10px;
+        @media (max-width: 768px) {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        }
+`
+
+const Input = styled.input`
+        border: inset ;
+        border-radius: 25px;
+        outline:none;
+        padding: 7px;
+        text-align: center;
+        @media (max-width: 768px) {
+        padding: 5px;
+        }
+`
+
+const Error = styled.div`
+        color: #FF0000;
+        text-align: center;
+        @media (max-width: 768px) {
+        font-size: 12px;
+        }
+`
 
 const InputField = (props) => {
     const {error} = props;
     return (
-        <div style={{padding: 10}}>
-            <input {...props} />
+        <BoxInput>
+            <Input {...props} />
             {error && (
-                <div style={{color: '#FF0000'}}>{error}</div>
+                <Error>{error}</Error>
             )}
-        </div>
+        </BoxInput>
     );
 };
 

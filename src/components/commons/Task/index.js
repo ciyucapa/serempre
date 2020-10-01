@@ -2,11 +2,86 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
+import styled from "styled-components"
 import useTasks from '../../../hooks/useTasks';
 import TaskUpdate from '../../TaskUpdate';
 import TextField, {HIGH_SIZE} from '../../commons/TextField';
 import {Assets} from '../../../resources';
-import {deleteTask, updateTask} from '../../../state/ducks/task/actions';
+import {deleteTask} from '../../../state/ducks/task/actions';
+
+const ContainerTask = styled.div`
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        align-content: center;
+        align-items: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        @media (max-width: 768px) {
+        min-width: 200px;
+        margin: 0 auto;
+        }
+
+`
+
+const ContainTask = styled.div`
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-content: center;
+        align-items: center;
+        border-radius: 25px;
+        border: 1px solid black;
+        padding: 5px 30px;
+        width: 100%;
+        min-width: 400px;
+        max-width: 400px;
+        @media (max-width: 768px) {
+        justify-content: space-around;
+        min-width: 300px;
+        max-width: 300px;
+        padding: 5px 5px;
+        }
+`
+
+const BoxField = styled.div`
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        text-align: left;
+        @media (max-width: 768px) {
+        flex-direction: row;
+        }
+`
+
+const BoxImage = styled.div`
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+        padding-left: 20px;
+        cursor: pointer;
+        @media (max-width: 768px) {
+        padding-left: 10px;
+        }
+`
+
+const Image = styled.img`
+        width: 15px;
+        height: 15px;
+`
+
+const ButtonContent = styled.div`
+       display: flex;
+       flex-direction: row;
+       width: 70px;
+       @media (max-width: 768px) {
+        width: 45px;
+        }
+`
 
 const Task = (props) => {
     const {
@@ -15,7 +90,6 @@ const Task = (props) => {
         description,
         email,
         deleteTask,
-        updateTask,
     } = props;
     const [isUpdate, setUpdate] = useState(false);
     const hook = useTasks();
@@ -30,31 +104,38 @@ const Task = (props) => {
     };
 
     const updateTaskHandler = (newValues, id) => {
-      hook.updateTask({variables: {id, input: {newValues}}});
-      updateTask({...newValues, id});
+        hook.updateTask({
+            variables: {
+                input: {
+                    where: {
+                        id: id
+                    },
+                    data: newValues,
+                }
+            }
+        });
       setUpdate(false);
     };
 
     return (
-        <div style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingTop: 20, paddingBottom: 20}}>
-            <div style={{width: 500, display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                <div style={{display: 'flex', flexDirection: 'column'}}>
+        <ContainerTask>
+            <ContainTask>
+                <BoxField>
                     <TextField text={title} type={HIGH_SIZE} />
                     <TextField text={description} />
-                </div>
-                <div style={{display: 'flex', flexDirection: 'column', paddingLeft: 30, paddingRight: 30}}>
-                    Correo del encargado
-                    <TextField text={email} type={HIGH_SIZE} />
-                </div>
-                <div onClick={showOrHiddenUpdate} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: 30, cursor: 'pointer'}}>
-                    <img src={Assets.images.edit} alt={'Editar tarea'} />
-                </div>
-                <div onClick={deleteTaskHandler} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: 30, cursor: 'pointer'}}>
-                    <img src={Assets.images.trash} alt={'Borrar tarea'} />
-                </div>
-            </div>
+                    <TextField text={email} />
+                </BoxField>
+                <ButtonContent>
+                    <BoxImage onClick={showOrHiddenUpdate}>
+                        <Image src={Assets.images.edit} alt={'Editar tarea'} />
+                    </BoxImage>
+                    <BoxImage onClick={deleteTaskHandler}>
+                        <Image src={Assets.images.trash} alt={'Borrar tarea'} />
+                    </BoxImage>
+                </ButtonContent>
+            </ContainTask>
             {isUpdate && (<TaskUpdate {...props} updateTask={updateTaskHandler} />)}
-        </div>
+        </ContainerTask>
     );
 };
 
@@ -72,7 +153,6 @@ Task.defaultProps = {
 
 const mapDispatchToProps = {
     deleteTask,
-    updateTask,
 };
 
 export default connect(null, mapDispatchToProps)(Task);

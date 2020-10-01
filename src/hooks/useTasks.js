@@ -1,77 +1,125 @@
 import {graphql, useStaticQuery} from 'gatsby';
-import {useMutation, gql} from '@apollo/client';
+import {useMutation, gql, useQuery} from '@apollo/client';
 
 const CREATE_TASK = gql`
-  mutation (
-  $input: CreateTaskInput!
+mutation (
+  $input: createTaskInput!
 ) {
   createTask(input: $input) {
-    id
-    email
-    title
-    description
-    position
+    task {
+        id
+        email
+        title
+        description
+        position
+    }
   }
 }
 `;
 
 const UPDATE_TASK = gql`
- mutation (
-  $id: ID!,
-  $input: UpdateTaskInput!
+mutation (
+   $input: updateTaskInput!
 ) {
-  updateTask(id: $id, input: $input) {
-    id
-    email
-    title
-    description
-    position
+  updateTask(input: $input) {
+    task {
+        id
+        email
+        title
+        description
+        position
+    }
   }
 }
 `;
 
 export const DELETE_TASK = gql`
-  mutation (
-  $id: String!
-) {
+mutation ($id: ID!) {
   deleteTask(input: { where: { id: $id } }) {
-  task {
-      id
-      email
-      title
-      description
-      position
+    task {
+        id
+        title
+        description
+        position
+        email
     }
   }
 }
 `
-
-const GET_TASKS = graphql`
+const ALL_TASKS = gql`
         query {
-            allStrapiTasks {
-                nodes {
-                   id
-                   title
-                   description
-                   email
-                   position {
-                      lat
-                      lng
-                   }
-                   created_at
-                }
+            tasks {
+                id
+                title
+                description
+                email
+                position
             }
         }
     `;
 
+const NEW_TASK = gql`
+                fragment NewTask on Task {
+                  id
+                  title
+                  description
+                  email
+                  position
+                }
+              `;
+
 const useTasks = () => {
-    const [createTask] = useMutation(CREATE_TASK);
-    const [deleteTask] = useMutation(DELETE_TASK);
-    const [updateTask] = useMutation(UPDATE_TASK);
-    const result = useStaticQuery(GET_TASKS);
+    const [createTask] = useMutation(CREATE_TASK, {
+        update(cache, {data: {createTask: {task}}}) {
+            cache.modify({
+                fields: {
+                    tasks(existingTasks = []) {
+                        console.log('existingTasks: ', existingTasks);
+                        const newTaskRef = cache.writeFragment({
+                            data: task,
+                            fragment: NEW_TASK,
+                        });
+                        return [...existingTasks, newTaskRef];
+                    }
+                }
+            });
+        }
+    });
+
+    const [deleteTask] = useMutation(DELETE_TASK, {
+        update(cache, {data: {deleteTask: {task}}}) {
+            cache.modify({
+                id: cache.identify(task),
+                fields: {
+                    tasks(existingTasksRefs, {readField}) {
+                        return existingTasksRefs.filter(
+                            taskRef => task.id !== readField('id', taskRef)
+                        );
+                    },
+                },
+            });
+        }
+    });
+    const [updateTask] = useMutation(UPDATE_TASK, {
+        update(cache, {data: {updateTask: {task}}}) {
+            cache.modify({
+                fields: {
+                    tasks(existingTasksRefs = [], {readField}) {
+                        const newTaskRef = cache.writeFragment({
+                            data: task,
+                            fragment: NEW_TASK
+                        });
+                        return [...existingTasksRefs, newTaskRef];
+                    }
+                }
+            });
+        }
+    });
+
+    const {data} = useQuery(ALL_TASKS);
 
     return {
-        tasks: result.allStrapiTasks.nodes,
+        tasks: data,
         createTask,
         deleteTask,
         updateTask,

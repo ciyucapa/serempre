@@ -70,7 +70,7 @@ TaskUpdate.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     email: PropTypes.string,
-    //updateTask: PropTypes.func,
+    updateTask: PropTypes.func,
 };
 
 TaskUpdate.defaultProps = {
@@ -78,7 +78,7 @@ TaskUpdate.defaultProps = {
     title: '',
     description: '',
     email: '',
-    //updateTask: () => {},
+    updateTask: () => {},
 };
 
 export default TaskUpdate;

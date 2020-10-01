@@ -6,10 +6,11 @@
 
 module.exports = {
   plugins: [
+      `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: `https://api-1xhfx.strapidemo.com`,
+        apiURL: `https://api-u2yol.strapidemo.com`,
         queryLimit: 1000,
         contentTypes: [`tasks`],
       },
@@ -17,7 +18,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-apollo',
       options: {
-        uri: 'https://api-1xhfx.strapidemo.com'
+        uri: 'https://api-u2yol.strapidemo.com/graphql'
       }
     }
   ],

@@ -9,8 +9,11 @@ const UpdateTaskStrapi = (props) => {
     const {tasks} = useTasks();
 
     useEffect(() => {
-        fetchTasksStrapi(tasks);
-    }, []);
+        if (tasks && tasks.tasks) {
+            console.log('Ts: ', tasks.tasks);
+            fetchTasksStrapi(tasks.tasks);
+        }
+    }, [tasks]);
 
     return (<></>);
 };
