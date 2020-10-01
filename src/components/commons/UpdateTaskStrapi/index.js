@@ -10,7 +10,6 @@ const UpdateTaskStrapi = (props) => {
 
     useEffect(() => {
         if (tasks && tasks.tasks) {
-            console.log('Ts: ', tasks.tasks);
             fetchTasksStrapi(tasks.tasks);
         }
     }, [tasks]);
